@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
-const SignUp = () => {
-    const [isSignUp, setIsSignUp] = useState(true);
+const SignIn = () => {
+    const [isSignIn, setIsSignIn] = useState(true);
     return (
         <div className="flex w-full justify-between ">
             <div
@@ -21,11 +21,11 @@ const SignUp = () => {
                         Welcome to SpotLink!
                     </h1>
                     <div className="flex justify-around py-2 mb-5 bg-gray-200 w-full">
-                        <button onClick={() => setIsSignUp(() => true)} className={isSignUp ? "py-2 px-5 md:px-20 bg-white rounded-sm" : "py-2 px-5 md:px-20  rounded-sm"}>Sign Up</button>
-                        <button onClick={() => setIsSignUp(() => false)} className={!isSignUp ? "py-2 px-5 md:px-20 bg-white rounded-sm" : "py-2 px-5 md:px-20  rounded-sm"}>Sign In</button>
+                        <button onClick={() => setIsSignIn(() => true)} className={isSignIn ? "py-2 px-5 md:px-20 bg-white rounded-sm" : "py-2 px-5 md:px-20  rounded-sm"}>Sign Up</button>
+                        <button onClick={() => setIsSignIn(() => false)} className={!isSignIn ? "py-2 px-5 md:px-20 bg-white rounded-sm" : "py-2 px-5 md:px-20  rounded-sm"}>Sign In</button>
                     </div>
                     <form className="flex flex-col gap-5">
-                        {isSignUp ? <div className="signup">
+                        {isSignIn ? <div className="signup">
                             <div className="w-full flex flex-col gap-1.5">
                                 <label className="block text-slate-500" htmlFor="email">
                                     Input Email:
@@ -83,4 +83,4 @@ const SignUp = () => {
     );
 };
 
-export default SignUp;
+export default SignIn;
