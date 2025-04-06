@@ -14,7 +14,13 @@ function SignIn() {
         resolver: zodResolver(singinSchema)
     });
     const handleSignIn = (data)=>{
-        console.log(data);
+        const email = localStorage.getItem('email');
+        const password = localStorage.getItem("password")
+        if(email === data.email && password ===data.password){
+            console.log("succesfully authorized!");
+        }else{
+            console.log("wrong credentials!");
+        }
     }
     return (
         <form onSubmit={handleSubmit(handleSignIn)} className="flex flex-col gap-5">
