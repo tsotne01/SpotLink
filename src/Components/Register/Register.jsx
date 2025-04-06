@@ -19,7 +19,12 @@ const Register = () => {
         resolver: zodResolver(registrationSchema)
     });
     const handleRegistration = (data)=>{
-        console.log(data);
+        localStorage.setItem("username",data.username);
+        localStorage.setItem("email",data.email);
+        localStorage.setItem("password",data.password);
+        console.log("username from localstorage",localStorage.getItem("username"));
+        console.log("email from localstorage",localStorage.getItem("email"));
+        console.log("password from localstorage",localStorage.getItem("password"));
     }
     return (
         <form onSubmit={handleSubmit(handleRegistration)} className="flex flex-col gap-5">
