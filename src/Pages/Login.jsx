@@ -10,18 +10,18 @@ import { useNavigate } from 'react-router-dom';
 
 function Login() {
     const [isSignInPage, setIsSignInPage] = useState(true);
-    const [credentials, setCredentials] = useState({});
     const navigator = useNavigate();
 
     useEffect(() => {
-        setCredentials(() => getUser());
+        const credentials = getUser();
+        if (credentials.name !== "" && credentials.email !== "" && credentials.password !== "") {
+            console.log("hits")
+            navigator("/Dashboard");
+        }
     }, [])
 
 
-    if (credentials.name !== "" && credentials.email !== "" && credentials.password !== "") {
-        console.log("hits")
-        navigator("/Dashboard");
-    }
+    
 
     return (
         <div className="flex w-full min-h-screen bg-gray-100 dark:bg-gray-900">
