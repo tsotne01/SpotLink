@@ -1,31 +1,16 @@
 import React from "react";
 import Input from "../Input/Input";
 import { useForm } from "react-hook-form";
-import z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod";
+import { registrationSchema } from "../../Schemas/Schemas";
+import { handleRegistration } from "../../lib/Api/Api";
 
-const registrationSchema = z.object({
-    username: z.string().min(3),
-    email: z.string().email().min(1),
-    password: z.string().min(8),
-    confirmpassword: z.string().min(8)
-}).refine(data => data.password === data.confirmpassword, {
-    message: "Passwords do not match",
-    path: ["confirmpassword"],
-  });
 
 const Register = () => {
     const { register, handleSubmit, formState: { errors, isLoading } } = useForm({
         resolver: zodResolver(registrationSchema)
     });
-    const handleRegistration = (data)=>{
-        localStorage.setItem("username",data.username);
-        localStorage.setItem("email",data.email);
-        localStorage.setItem("password",data.password);
-        console.log("username from localstorage",localStorage.getItem("username"));
-        console.log("email from localstorage",localStorage.getItem("email"));
-        console.log("password from localstorage",localStorage.getItem("password"));
-    }
+    
     return (
         <form onSubmit={handleSubmit(handleRegistration)} className="flex flex-col gap-5">
             <div className="signup flex flex-col gap-5">
