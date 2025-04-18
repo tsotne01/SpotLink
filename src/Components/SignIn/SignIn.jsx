@@ -1,15 +1,23 @@
-import React from 'react'
+import React, { useLayoutEffect } from 'react'
 import Input from '../Input/Input'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { singinSchema } from '../../Schemas/Schemas';
-import { handleSignIn } from '../../lib/Api/Api';
+import { getUser, handleSignIn } from '../../lib/Api/Api';
+import { useNavigate } from 'react-router-dom';
 
 
 function SignIn() {
     const { register, handleSubmit, formState: { errors, isLoading } } = useForm({
         resolver: zodResolver(singinSchema)
     });
+
+    const navigate = useNavigate();
+
+    const signIn = (data)=>{
+        handleSignIn(data)
+        navigate("/Dashboard");
+    }
 
     return (
         <div className="max-w-md mx-auto mt-8 md:mt-12 p-6 md:p-8 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700">
@@ -18,7 +26,7 @@ function SignIn() {
                 Sign In
             </h2>
 
-            <form onSubmit={handleSubmit(handleSignIn)} className="space-y-6">
+            <form onSubmit={handleSubmit(signIn)} className="space-y-6">
 
                 <div>
                     <label htmlFor="email" className="block mb-1.5 text-sm font-medium text-gray-700 dark:text-gray-300">

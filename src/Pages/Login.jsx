@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import SignIn from '../Components/SignIn/SignIn';
 import Register from '../Components/Register/Register';
 import locationIcon from "../assets/location-icon.png"
@@ -9,19 +9,7 @@ import { getUser } from '../lib/Api/Api';
 import { useNavigate } from 'react-router-dom';
 
 function Login() {
-    const [isSignInPage, setIsSignInPage] = useState(true);
-    const navigator = useNavigate();
-
-    useEffect(() => {
-        const credentials = getUser();
-        if (credentials.name !== "" && credentials.email !== "" && credentials.password !== "") {
-            console.log("hits")
-            navigator("/Dashboard");
-        }
-    }, [])
-
-
-    
+    const [isSignInPage, setIsSignInPage] = useState(true);   
 
     return (
         <div className="flex w-full min-h-screen bg-gray-100 dark:bg-gray-900">

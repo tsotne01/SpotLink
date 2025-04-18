@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useLayoutEffect } from "react";
 import Input from "../Input/Input";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registrationSchema } from "../../Schemas/Schemas";
-import { handleRegistration } from "../../lib/Api/Api";
+import { getUser, handleRegistration } from "../../lib/Api/Api";
+import { useNavigate } from "react-router-dom";
 
 
 const Register = () => {
@@ -11,6 +12,11 @@ const Register = () => {
         resolver: zodResolver(registrationSchema),
 
     });
+    const navigate = useNavigate();
+    const registerHandler = (data)=>{
+        handleRegistration(data);
+        navigate("/Dashboard");
+    }
 
     return (
         <div className="max-w-md mx-auto mt-8 md:mt-12 p-6 md:p-8 bg-white dark:bg-gray-800 rounded-lg shadow-xl border border-gray-200 dark:border-gray-700">
@@ -19,7 +25,7 @@ const Register = () => {
                 Create Your Account
             </h2>
 
-            <form onSubmit={handleSubmit(handleRegistration)} className="space-y-5">
+            <form onSubmit={handleSubmit(registerHandler)} className="space-y-5">
 
                 <div>
                     <label htmlFor="username" className="block mb-1.5 text-sm font-medium text-gray-700 dark:text-gray-300">

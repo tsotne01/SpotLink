@@ -1,4 +1,5 @@
-export const handleRegistration = (data) => {
+
+export const handleRegistration = async (data) => {
   localStorage.setItem("username", data.username);
   localStorage.setItem("email", data.email);
   localStorage.setItem("password", data.password);
@@ -30,7 +31,7 @@ export const getUser = async () => {
 };
 
 export const logOut = async () => {
-  localStorage.setItem("email","");
-  localStorage.setItem("username","");
-  localStorage.setItem("password","");
+  localStorage.setItem("email", "");
+  localStorage.setItem("username", "");
+  localStorage.setItem("password", "");
 };
